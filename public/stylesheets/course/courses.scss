@@ -1,0 +1,70 @@
+.courses{
+  width: 100%;
+  .result{
+    padding-top: 180px;
+  }
+  .top-bar{
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+  }
+  .controller{
+    width: 100%;
+    min-height:150px;
+    background: #30ace1;
+    transition: 0.2s;
+    margin-top: -70px;
+    border-bottom: 5px solid $orange-back;
+    .controller-content{
+      &.sortcontent{
+        height: 60px;
+        align-items: center;
+      }
+      height: 80px;
+      align-items: flex-end;
+      justify-content: center;
+      .sort{
+        margin-right: 10px;
+        height: auto;
+        padding: 5px;
+        background: $gray;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        cursor: pointer;
+
+        &.sortactive{
+          background: #fff;
+          border: 1px solid $orange-back;
+        }
+      }
+    }
+  }
+  .active >.controller{
+    margin-top: 0;
+  }
+  .up{
+    width: 100%;
+    .up-control{
+      cursor: pointer;
+      text-align: center;
+      color: #ddd;
+      margin: 0 auto;
+      width: 100px;
+      height: 15px;
+      font-size: 12px;
+      line-height: 12px;
+      border: 1px solid #ddd;
+      border-top: none;
+      border-bottom-left-radius: 150px;
+      border-bottom-right-radius: 150px;
+      background: #fff;
+    }
+  }
+  .home{
+    min-height: 680px;
+  }
+  .filters{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}

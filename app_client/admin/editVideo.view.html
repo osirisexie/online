@@ -1,0 +1,52 @@
+<div class="grid-container" style="margin-top: 70px">
+    <div>Video Name: {{vm.video.title}}</div>
+    <form id="addVideo" name="newVideo" role="form" ng-submit="vm.onEdit()" novalidate="novalidate">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" ng-model="vm.video.title" required="required">
+        </div>
+        <div class="form-group">
+            <label for="vid">vimeo id</label>
+            <input id="vid" name="vid" type="text" ng-model="vm.video.videoid" required="required">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" type="text" ng-model="vm.video.description" required="required" ></textarea>
+        </div>
+        <div class="form-group">
+            <label for="length">Video Length (in secs)</label>
+            <input id="length" name="length" type="text" ng-model="vm.video.length" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit"
+                    ladda="vm.submitting"
+                    data-style="expand-right"
+            >
+                <span ng-show="vm.submitting">Submitting</span>
+                <span ng-show="!vm.submitting">Edit</span>
+            </button>
+        </div>
+    </form>
+    <br>
+    <div>Chapters:</div>
+    <ul class="draglist" data-as-sortable="board.dragControlListeners" data-ng-model="vm.video.chapters">
+        <li data-ng-repeat="(key, item) in vm.video.chapters" data-as-sortable-item>
+            <div class="dragcontiner grid-block">
+                <div class="grid-block small-10" data-as-sortable-item-handle>{{ item.title }} @ {{item.secs}} seconds</div>
+                <div class="grid-block small-2" ng-click="vm.remove(key)" style="cursor: pointer">x</div>
+            </div>
+        </li>
+    </ul>
+
+    <div>
+        <form role="form" ng-submit="vm.onAddChapter()">
+            title: <input type="text" name="title" ng-model="vm.formData.Ctitle">
+            time (in secs): <input type="text" name="secs" ng-model="vm.formData.Csecs">
+            <div>{{vm.error}}</div>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+    <br>
+    <div><button ng-click="vm.onUpdateChapter()">update</button></div>
+
+</div>

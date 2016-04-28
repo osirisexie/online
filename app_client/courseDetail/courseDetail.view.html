@@ -1,0 +1,104 @@
+            <div class="grid-block vertical">
+                <div class="hide-for-large small-float" ng-class="{show: scrollPos >=90}">
+                    Menu
+                </div>
+                <banner id="top"></banner>
+                <div class="show-for-large float-menu grid-block vertical" ng-class="{fixed: scrollPos >= 90}" on-click>
+                    <div class="grid-content" ng-click="vm.scroll('top')">Top</div>
+                    <div class="grid-content" ng-click="vm.scroll('intro')">Introduction</div>
+                    <div class="grid-content" ng-click="vm.scroll('less')">Lessons</div>
+                    <div class="grid-content" ng-click="vm.scroll('offer')">Enroll</div>
+                    <div class="grid-content" ng-click="vm.scroll('teacher')">Instructors</div>
+                </div>
+                <div class="courseDetail-container grid-block">
+                    <div class="small-offset-1 small-10 large-offset-4 large-6 grid-content">
+                        <div id="intro" class="course-content specialization">
+                            <div class="course-content-block">
+
+                                <span>{{vm.course.title}}&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </div>
+                            <div class="course-content-block">
+                                {{vm.course.description}}
+                            </div>
+                        </div>
+                        <div id="less" class="course-content">
+                            <div class="course-content-block">
+                                <span>Lessons ( <i class="fa fa-television"></i>: {{vm.course.videos.length}}   )&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </div>
+                            <div class="course-content-block" >
+                                <zf-accordion multi-open="true">
+                                    <div ng-repeat="(key, video) in vm.course.videos"  class="accordion-item" ng-class="{'is-active': vm.activatenum[key]}" >
+                                        <div class="accordion-title" ng-click="vm.activate(key)">
+                                            <i class="fa fa-video-camera"></i>
+                                            :{{video.length| secondsToDateTime | date:'HH:mm:ss'}}  {{ video.title }}
+                                            <a ng-show="(vm.courselist.indexOf(vm.courseid)>-1)" ui-sref="oneVideo({courseid:vm.course._id,id:video._id})" style="float:  right">
+                                                <i class="fa fa-youtube-play"></i>
+                                            </a>
+                                        </div>
+                                        <div class="accordion-content" >
+                                            {{video.description}}
+                                        </div>
+                                    </div>
+
+                                </zf-accordion>
+                            </div>
+                        </div>
+                        <div id="offer" class="course-content">
+                            <div class="course-content-block">
+                                <span>Offers ( <i class="fa fa-shopping-cart"></i> {{vm.products.length}} )&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </div>
+                            <div ng-show="!vm.products.length" class="course-content-block" >
+                                Coming Soon! Please Check Back Later!
+                            </div>
+                            <div class="course-content-block grid-block">
+
+                                <div ng-repeat="(key, product) in vm.products" class="pcard">
+
+                                    <div class="pbox">
+                                        <div class="ptitle">{{product.title}}</div>
+                                        <div class="pdes">{{product.description}}</div>
+                                        <div class="grid-block pdetailblock">
+                                            <div class="pdtail">
+                                                <a zf-open="basicModal{{key}}">Courses: {{product.courses.length}}</a>
+                                            </div>
+                                            <div zf-modal="" id="basicModal{{key}}">
+                                                <a zf-close="basicModal{{key}}" class="close-button">×</a>
+                                                <h3>Courses:</h3>
+                                                <div class="grid-block pcourse small-up-1 medium-up-2">
+                                                    <div ng-repeat="course in product.courses" course-card course='course' ng-class="{'is-current':  vm.courseid == course._id}"></div>
+                                                </div>
+                                            </div>
+                                            <div class="pdtail">
+                                                <div>Videos: {{product.videonum}}</div>
+                                            </div>
+                                            <div class="pdtail">
+                                                <div>Hours: {{product.totaltime | secondsToDateTime | date:'HH:mm:ss'}}</div>
+                                            </div>
+                                            <div class="pdtail">
+                                                <div>TA hours: ??</div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="vm.user.admin">
+                                            <div class="penroll" ng-show="((vm.uplist.indexOf(product._id) == -1)||(!vm.uplist.length))&&(vm.user)">
+                                                <span class="penrollbtn" ng-click="vm.enroll(product._id)">Enroll Now At $00000 </span>
+                                            </div>
+                                            <div class="penroll" ng-show="!vm.user">
+                                                <span class="penrollbtn" ui-sref="login" >Please Login First</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="course-content" id="teacher">-->
+                            <!--<div class="course-content-block">-->
+                                <!--<span>Instructor&nbsp;&nbsp;&nbsp;&nbsp;</span>-->
+                            <!--</div>-->
+                            <!--<div class="course-content-block">-->
+                                <!--xxxxxxxxxxxxxxxx xxxxxxxxx xxxxxxxxxxxxxxxxxx xxxxxxxxxxx xxxxxxxxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxx xxxxxxxxxxxx xxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxxx xxxxxx xxxxxxxxxxxxxxxxx xxxxxxx-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                    </div>
+                </div>
+            </div>

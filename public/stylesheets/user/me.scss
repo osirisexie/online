@@ -1,0 +1,80 @@
+.acbtn{
+  background: #30ace1;
+  color: white;
+}
+.me{
+  .report{
+
+    padding: 20px 0;
+    background: smartscale($blue-back,40%);
+
+    color: #fff;
+    font-weight: 400;
+    font-family: $Montserrat;
+    font-size: 1.2em;
+  }
+  .user-info{
+    overflow: hidden;
+    .user-name{
+      padding: 10px 0;
+    }
+    .random-content{
+      padding-top:15px;
+      font-size: 15px;
+    }
+    .random{
+      padding: 10px 0;
+      font-size: 2em;
+      color: $orange-back;
+      text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+      position: absolute;
+      &.ng-enter {
+        -webkit-animation: fadeInLeft 1s;
+        -moz-animation: fadeInLeft 1s;
+        -ms-animation: fadeInLeft 1s;
+        animation: fadeInLeft 1s;
+      }
+
+      &.ng-leave {
+        -webkit-animation: fadeOutRight 1s;
+        -moz-animation: fadeOutRight  1s;
+        -ms-animation: fadeOutRight  1s;
+        animation: fadeOutRight  1s;
+      }
+    }
+    @include breakpoint(medium){
+     padding-left: 20px;
+    }
+    @include breakpoint(large){
+      padding-left: 150px;
+    }
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: 200px;
+    font-size: 2em;
+    font-weight: 700;
+  }
+  .number{
+    font-size: 2em;
+    color: $orange-back;
+    text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+  }
+  .report-content{
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
+  .mycourse-btn{
+    display: inline-block;
+    background: $blue-back;
+    box-shadow: 1px 1px 4px #555;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    &.acbtn{
+      background: #fff;
+      color: #555;
+      box-shadow: inset 1px 1px 4px #555;
+    }
+  }
+}

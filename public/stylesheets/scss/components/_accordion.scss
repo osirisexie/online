@@ -1,0 +1,77 @@
+/*
+  ACCORDION
+  ---------
+
+  The trusy accordion allows you to create a series of vertical tabs.
+*/
+
+/// @Foundation.settings
+// Accordion
+$accordion-border: 1px solid $gray-dark !default;
+
+$accordion-title-background-active: #30ace1 !default;
+$accordion-title-background-hover: smartscale($accordion-title-background-active, 70%) !default;
+$accordion-title-background: smartscale($accordion-title-background-active, 80%) !default;
+$accordion-title-color: isitlight($accordion-title-background) !default;
+$accordion-title-color-active: isitlight($accordion-title-background) !default;
+
+$accordion-title-padding: $global-padding !default;
+$accordion-content-padding: $global-padding !default;
+///
+
+@mixin accordion-title(
+  $background: $accordion-title-background,
+  $background-hover: $accordion-title-background-hover,
+  $background-active: $accordion-title-background-active,
+  $color: $accordion-title-color,
+  $color-active: $accordion-title-color-active,
+  $padding: $accordion-title-padding
+) {
+  padding: $padding;
+  background: $background;
+  color: $color;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    background: $background-hover;
+  }
+
+  .is-active > & {
+    background: $background-active;
+    color: $color-active;
+  }
+}
+
+@mixin accordion-content(
+  $padding: $accordion-content-padding
+) {
+  padding-left: $padding;
+  transition: 0.2s;
+  height: 0px;
+  overflow: hidden;
+  display: block;
+  .is-active > & {
+    transition:  0.2s;
+    display: block;
+    height: auto;
+    padding: $padding;
+  }
+}
+
+@include exports(accordion) {
+  .accordion {
+    @if hasvalue($accordion-border) {
+      border: $accordion-border;
+    }
+  }
+    .accordion-item {
+
+    }
+    .accordion-title {
+      @include accordion-title;
+    }
+    .accordion-content {
+      @include accordion-content;
+    }
+}

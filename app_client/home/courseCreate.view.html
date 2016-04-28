@@ -1,0 +1,18 @@
+<navigation></navigation>
+<div class="container">
+    <div ng-repeat="course in vm.courses">
+        <a href="/#courses/{{course._id}}">{{course}}</a>
+    </div>
+    <form id="addCourse" name="addCourse" role="form" ng-submit="vm.onSubmit()">
+        <label for="title">title</label>
+        <input id="title" type="text" ng-model="vm.formData.title">
+        <label for="description">description</label>
+        <input id="description" type="text" ng-model="vm.formData.description">
+        <label for="videos">Videos</label>
+        <select name="videos" id="videos" multiple ng-model="vm.formData.videos">
+            <option ng-repeat="video in vm.videos" value="{{video._id}}">{{video.title}}</option>
+        </select>
+        <input type="file" ngf-select="vm.upload($file)">
+        <button type="submit">Submit</button>
+    </form>
+</div>

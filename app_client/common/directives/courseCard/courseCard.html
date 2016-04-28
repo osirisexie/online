@@ -1,0 +1,21 @@
+<div  class="grid-block ">
+    <div class="card product-card">
+        <a  ui-sref="oneCourse({courseid: course._id})" >
+            <div class="card-img">
+                <img class="" ng-src="{{course.cover}}" alt="">
+                <div class="img-content">{{course.description}}</div>
+            </div>
+        </a>
+        <div class="card-divider">
+            <a ui-sref="oneCourse({courseid: course._id})">{{course.title}}</a>
+        </div>
+        <div class="card-section">
+            <div class="detail"><i class="fa fa-television"></i> Total Videos: <span class="numbers">{{course.videos.length}}</span></div>
+            <div class="detail"><i class="fa fa-clock-o"></i> Total Length: <span class="numbers">{{course.length |secondsToDateTime | date:'HH:mm:ss'}}</span></div>
+            <div class="detail"><i class="fa fa-group"></i> Students: <span class="numbers">{{course.studentNum}}</span></div>
+        </div>
+        <div ng-show="!!progress" class="progress">
+            <div class="percent" ng-style="{'width': progress+'%'}" ng-class="{'red': progress<30, 'yellow':(progress<70&&progress>30),'green':progress>70}"></div>
+        </div>
+    </div>
+</div>

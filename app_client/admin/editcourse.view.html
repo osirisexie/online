@@ -1,0 +1,58 @@
+<div class="grid-container top-container">
+    <form id="addCourse" name="addCourse" role="form" class="admin-form" ng-submit="vm.onEdit()" style="margin-bottom: 30px">
+        <div class="form-group">
+            <label for="title">title</label>
+            <input id="title" type="text" ng-model="vm.course.title">
+        </div>
+        <div class="form-group">
+            <label for="description">description</label>
+            <textarea id="description" type="text" ng-model="vm.course.description"></textarea>
+        </div>
+        <div style="margin-bottom: 30px">
+            <span ng-repeat="label in vm.labels" ng-click="vm.addlabel(label)" class="label mylabel">{{label}}</span>
+        </div>
+        <div style="min-height: 100px; padding: 15px; border: 1px solid #ddd; border-radius: 4px;margin-bottom: 30px">
+            <span ng-repeat="(key, label) in vm.formData.labels" ng-click="vm.removelabel(key)" class="label mylabel">{{label}}</span>
+        </div>
+        <div class="form-group">
+            <button type="submit">Edit</button>
+        </div>
+    </form>
+
+    <div>
+        <div>Videos:</div>
+        <ul class="draglist" data-as-sortable="board.dragControlListeners" data-ng-model="vm.course.videos">
+            <li data-ng-repeat="(key, item) in vm.course.videos" data-as-sortable-item>
+                <div class="dragcontiner grid-block">
+                    <div class="grid-block small-10" data-as-sortable-item-handle>{{ item.title }}</div>
+                    <div class="grid-block small-2" ng-click="vm.remove(key)" style="cursor: pointer">x</div>
+                </div>
+            </li>
+        </ul>
+        <form ng-submit="vm.addVideos()">
+            <div class="form-group">
+            Search: <input type="text" ng-model="vm.search.title">
+                </div>
+            <div class="form-group">
+            <select name="videos" id="videos" multiple ng-model="vm.formData.videos" style="min-height: 200px">
+                <option ng-repeat="video in vm.videos | filter: vm.search" value="{{video}}">{{video.title}}</option>
+            </select>
+                </div>
+            <div class="form-group">
+            <button type="submit">Add</button>
+                </div>
+        </form>
+
+        <button ng-click="vm.onEditVideo()">Update</button>
+
+    </div>
+    <div style="margin-top: 40px">Cover:</div>
+    current:
+    <div><img ng-src="{{vm.coverurl}}" style="width: 250px" alt=""></div>
+    <button type="file" ngf-select="vm.uploadFiles($file, $invalidFiles)"
+            accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" >
+        Select File</button>
+    <div style="line-height: 20px">{{vm.errFile.name}} upload error: {{vm.errFile.$error}} {{vm.errFile.$errorParam}}
+
+    </div>
+</div>

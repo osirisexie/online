@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html ng-app='onlineApp' class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0" />
+    <link rel='stylesheet' href='/stylesheets/animate.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/bower_components/ladda/dist/ladda.min.css" />
+    <!--<link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">-->
+    <!--<link rel="stylesheet" href="/stylesheets/app.css">-->
+
+    <link rel="stylesheet" type="text/css" href="/dist/ng-sortable.min.css" />
+    <!-- OPTIONAL: default style -->
+    <link rel="stylesheet" type="text/css" href="/dist/ng-sortable.style.min.css" />
+
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css' />
+    <base href="/" />
+    <title>Online Classroom</title>
+</head>
+<body >
+    <zf-offcanvas id="menu" position="left">
+        <a zf-close="" class="close-button">×</a>
+
+    </zf-offcanvas>
+    <div class="grid-frame vertical"  zf-close-all="" zf-esc-close="" >
+
+        <navigation class="online-nav"></navigation>
+        <div class="grid-block vertical">
+            <div class="main-content">
+                <div class="grid-block ui-view" autoscroll='true'>
+                </div>
+            </div>
+            <div ng-include="'/common/directives/footer/footer.template.html'"></div>
+        </div>
+
+
+    </div>
+
+
+    <script src='/angular/foundation.js'></script>
+    <script src='/lib/angular-route.min.js'></script>
+    <script src="/bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="/lib/ng-file-upload.min.js"></script>
+    <script src="/angular/onlineApp.min.js"></script>
+    <!--<script src='/app.js'></script>-->
+    <script type="text/javascript" src="/dist/ng-sortable.min.js"></script>
+    <script src="/bower_components/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
+    <script src="/bower_components/ladda/dist/spin.min.js"></script>
+    <script src="/bower_components/ladda/dist/ladda.min.js"></script>
+    <script src="/bower_components/angular-ladda/dist/angular-ladda.min.js"></script>
+    <script src="/common/directives/courseCard/courseCard.directive.js"></script>
+    <script src="/bower_components/angular-scroll/angular-scroll.min.js"></script>
+    <script src="/javascripts/vimeo.js"></script>
+    <!--<script src='/home/home.controller.js'></script>-->
+    <!--<script src='/videos/videos.controller.js'></script>-->
+    <!--<script src='/products/products.controller.js'></script>-->
+    <!--<script src='/productDetail/productDetail.controller.js'></script>-->
+    <!--<script src='/courseDetail/courseDetail.controller.js'></script>-->
+
+    <!--<script src='/common/services/courseData.service.js'></script>-->
+    <!--<script src='/common/services/videoData.service.js'></script>-->
+    <!--<script src='/common/services/productData.service.js'></script>-->
+
+    <!--<script src="/common/directives/navigation/navigation.directive.js"></script>-->
+    <!--<script src="/common/helpers.js"></script>-->
+
+
+</body>
+</html>

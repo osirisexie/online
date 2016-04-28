@@ -1,0 +1,61 @@
+@import 'scss/foundation';
+$orange-back: #f7921e;
+$blue-back: #30ACE1;
+$Montserrat: 'Montserrat', sans-serif;
+.my-main-body{
+  padding-top: 48px;
+}
+.online-nav{
+  z-index: 1000;
+}
+.mymenu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+.main-content{
+  margin-bottom: 70px;
+}
+.container-wrapper{
+  justify-content: center;
+}
+.mycontainer{
+  @include breakpoint(small) {
+    width: 320px;
+  }
+  @include breakpoint(medium){
+    width: 650px;
+  }
+  @include breakpoint(large){
+    width: 1200px;
+  }
+}
+.mylabel, .mylabel.warning{
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+  &.activate{
+    background: #fff;
+    color: #555;
+    box-shadow: inset 1px 1px 4px #555;
+  }
+}
+.top-container{
+  margin-top: 70px;
+}
+button:focus{
+  outline: none;
+}
+@import "./home/home";
+@import "./course/courseDetail";
+@import "./course/courses";
+@import "./common/banner";
+@import "./common/footer";
+@import "./admin/admin";
+@import "./common/form";
+@import "./user/me";
+@import "./common/coursecard";
+@import "./videos/videodetail";
+

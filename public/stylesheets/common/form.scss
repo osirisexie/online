@@ -1,0 +1,22 @@
+.has-error{
+  input{
+    margin-bottom: 0.5rem;
+    &:not(:focus){
+      background-color: rgba(236, 88, 64, 0.1);
+      border-color: #ec5840;
+    }
+  }
+  label{
+    color: #ec5840;
+  }
+}
+.error-msg{
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #ec5840;
+}
+.form-group{
+  margin-bottom: 1rem;
+}

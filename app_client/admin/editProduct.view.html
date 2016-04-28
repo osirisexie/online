@@ -1,0 +1,40 @@
+<div class="grid-container top-container">
+    <div>
+        product name:
+    </div>
+    <form id="addCourse" name="addCourse" role="form" ng-submit="vm.onEdit()">
+        <div class="form-group">
+            <label for="title">title</label>
+            <input id="title" type="text" ng-model="vm.productDetail.title">
+        </div>
+        <div class="form-group">
+            <label for="description">description</label>
+            <textarea id="description" type="text" ng-model="vm.productDetail.description"></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Edit</button>
+        </div>
+    </form>
+    <br>
+    <div>Courses:</div>
+    <ul class="draglist" data-as-sortable="board.dragControlListeners" data-ng-model="vm.productDetail.courses">
+        <li data-ng-repeat="(key, item) in vm.productDetail.courses" data-as-sortable-item>
+            <div class="dragcontiner grid-block">
+                <div class="grid-block small-10" data-as-sortable-item-handle>{{ item.title }}</div>
+                <div class="grid-block small-2" ng-click="vm.remove(key)" style="cursor: pointer">x</div>
+            </div>
+        </li>
+    </ul>
+    <form ng-submit="vm.onAddCourse()">
+        <div class="form-group">
+            <select multiple ng-model="vm.formData.courses" style="min-height: 200px">
+                <option ng-repeat="course in vm.courses" value="{{course}}">{{course.title}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button>Add</button>
+        </div>
+    </form>
+    <br>
+    <button ng-click="vm.onEditCourses()">update courses</button>
+</div>

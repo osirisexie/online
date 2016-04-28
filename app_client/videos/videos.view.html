@@ -1,0 +1,15 @@
+<p>This Page is intended for finish video test. The Reports in Me page should change</p>
+<div class="top-container grid-container">
+    <div ng-repeat="video in vm.videos">{{video}} <button ng-show="(vm.vlist.indexOf(video._id) > -1)" ng-click="vm.finish(video._id)">finish</button></div>
+    <form id="addVideo" name="addVideo" role="form" ng-submit="vm.onSubmit()">
+        <label for="title">Title</label>
+        <input id="title" type="text" ng-model="vm.formData.title">
+        <label for="vid">vimeo id</label>
+        <input id="vid" type="text" ng-model="vm.formData.videoid">
+        <label for="description">Description</label>
+        <input id="description" type="text" ng-model="vm.formData.description">
+        <label for="length">Video Length</label>
+        <input id="length" type="text" ng-model="vm.formData.length">
+        <button type="submit">Submit</button>
+    </form>
+</div>

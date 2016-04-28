@@ -1,0 +1,58 @@
+.progress{
+  position: absolute;
+  width: 100%;
+  bottom: 0.5rem;
+  height: 10px;
+  border-top: 1px solid #ddd;
+
+  .percent{
+
+    height: 100%;
+  }
+  .red{
+    background: red;
+  }
+  .green{
+    background: lightgreen;
+  }
+  .yellow{
+    background: yellow;
+  }
+}
+.product-card{
+  font-size: 0.8em;
+  .detail{
+    padding: 3px;
+    .numbers{
+      font-weight: 600;
+      font-size: 1.5em;
+      color: $orange-back;
+    }
+  }
+  .card-img{
+
+    position: relative;
+    background: $blue-back;
+    .img-content{
+      color: #fff;
+      position: absolute;
+      top:0;
+      z-index: 0;
+      font-size: 1em;
+      padding: 15px;
+    }
+    img{
+      position: relative;
+      z-index: 1;
+      transition: 0.2s;
+    }
+
+    &:hover{
+      img{
+        transition: 0.2s;
+        margin-left: -256px;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,53 @@
+<div class="courses">
+    <div class="top-bar" ng-class="{'active':vm.top}">
+        <div class="controller">
+            <div class="controller-content grid-block search">
+                <div class="small-12 medium-5 large-4">
+                    <label>
+                    <span class="inline-label">
+                    <input type="search" placeholder="Search a thing" ng-model="vm.searchtext">
+                     <a ng-click="vm.search()" class="button">Search</a>
+                    </span>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="grid-block vertical grid-container controller-content sortcontent">
+
+                <div class="grid-block sortcontent grid-container controller-content">
+                    <div class="sort" ng-class="{'sortactive':vm.sorttime}" ng-click="vm.sortdate()">
+                        Date <i class="fa" ng-class="{'fa-chevron-down':!(vm.date == 1), 'fa-chevron-up':(vm.date ==1)}"></i>
+                    </div>
+                    <div class="sort" ng-class="{'sortactive':!vm.sorttime}" ng-click="vm.setpopular()">
+                        Popular <i class="fa" ng-class="{'fa-chevron-down':!(vm.popular == 1), 'fa-chevron-up':(vm.popular ==1)}"></i>
+                    </div>
+                    <div class="sort" ng-click="vm.clear()">
+                        Clear Search
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="up">
+            <div class="up-control" ng-click="vm.toggleTop()">
+                <i class="fa" ng-class="{'fa-chevron-down':!vm.top, 'fa-chevron-up':vm.top}"></i>
+            </div>
+        </div>
+    </div>
+    <div class="result">
+        <div class="home">
+            <div class="filters">
+                <span ng-repeat="label in vm.labels" ng-click="vm.getlabel  (label)" class="warning label mylabel" ng-class="{'activate':label == vm.filter}" >{{label}}</span>
+            </div>
+
+            <!--<div class="text-center">-->
+                <!--<h4>Popular</h4>-->
+            <!--</div>-->
+            <div class="grid-block small-up-1 medium-up-2 large-up-4">
+                <div ng-repeat="course in vm.courses" course-card course="course"></div>
+
+            </div>
+        </div>
+    </div>
+</div>

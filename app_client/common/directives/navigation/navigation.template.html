@@ -1,0 +1,29 @@
+<div class="grid-content collapse shrink">
+    <div class="menu-group dark">
+        <div class="menu-group-left hide-for-large">
+            <ul class="menu-bar primary">
+                <li><a zf-open="menu" href="#"><i class="fa fa-align-justify"></i></a></li>
+            </ul>
+        </div>
+        <div class="menu-group-left show-for-large">
+            <ul class="menu-bar primary">
+                <li><a href="/#home">Home</a></li>
+                <li><a href="/#courses">Courses</a></li>
+                <!--<li><a href="/#videos">Videos</a></li>-->
+
+
+                <!--<li><a href="/#test">Test</a></li>-->
+                <!--<li><a href="/#courses/56de4fd7a0d00216094626a7">Product Sample</a></li>-->
+            </ul>
+        </div>
+        <div class="menu-group-right show-for-large">
+            <ul class="icon-left primary menu-bar">
+                <li ng-hide="navvm.userinfo.isLoggedIn()"><a href="/#register"><img zf-iconic="" icon="thumb" size="small" class="iconic-color-primary">Register</a></li>
+                <li ng-hide="navvm.userinfo.isLoggedIn()"><a href="/#login"><img zf-iconic="" icon="thumb" size="small" class="iconic-color-primary">Login</a></li>
+                <li ng-show="navvm.userinfo.isLoggedIn()"><a href="" ng-click="navvm.userinfo.logout()"><img zf-iconic="" icon="thumb" size="small" class="iconic-color-primary">Logout</a></li>
+                <li ng-show="navvm.userinfo.isLoggedIn()"><a ui-sref="user"><img zf-iconic="" icon="thumb" size="small" class="iconic-color-primary">Me</a></li>
+                <li ng-show="navvm.userinfo.isAdmin()"><a href="/#admin"><img zf-iconic="" icon="thumb" size="small" class="iconic-color-primary">Admin</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

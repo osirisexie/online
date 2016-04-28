@@ -1,0 +1,35 @@
+<div class="grid-container top-container">
+    <div class="admin-title">Current Courses</div>
+    <div class="grid-block vlist">
+        <div ng-repeat="course in vm.courses">
+            <a class="grid-content" href="/#admin/courses/{{course._id}}">{{course.title}}</a>&nbsp;<span><i ng-click="vm.deleteCourse(course._id)" class="fa fa-trash-o" style="cursor: pointer"></i></span>
+        </div>
+    </div>
+    <div class="admin-title">Add Courses</div>
+    <form id="addCourse" name="addCourse" role="form" class="admin-form" ng-submit="vm.onSubmit()">
+        <div class="form-group">
+            <label for="title">title</label>
+            <input id="title" type="text" ng-model="vm.formData.title">
+        </div>
+        <div class="form-group">
+            <label for="description">description</label>
+            <textarea id="description" type="text" ng-model="vm.formData.description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="videos">Videos</label>
+            <select name="videos" id="videos" multiple ng-model="vm.formData.videos" style="min-height: 200px">
+                <option ng-repeat="video in vm.videos" value="{{video._id}}">{{video.title}}</option>
+            </select>
+        </div>
+        <div style="margin-bottom: 10px">add labels</div>
+        <div style="margin-bottom: 30px">
+            <span ng-repeat="label in vm.labels" ng-click="vm.addlabel(label)" class="label mylabel">{{label}}</span>
+        </div>
+        <div style="min-height: 100px; padding: 15px; border: 1px solid #ddd; border-radius: 4px;margin-bottom: 30px">
+            <span ng-repeat="(key, label) in vm.formData.labels" ng-click="vm.removelabel(key)" class="label mylabel">{{label}}</span>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>

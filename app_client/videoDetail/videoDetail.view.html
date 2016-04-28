@@ -1,0 +1,387 @@
+<div class="vimeo">
+
+    <div class="grid-block">
+        <div class="small-offset-1">
+            <div class="video-title"><a ui-sref="oneCourse({courseid:vm.courseid})">{{vm.course.title}}</a> / {{vm.video.title}} </div>
+        </div>
+    </div>
+    <div ng-show="!vm.flag" style="min-height: 300px" class="grid-block">
+        <div class="small-offset-1">
+            <div class="video-title"><i class="fa fa-spinner"></i> Loading Video </div>
+        </div>
+    </div>
+    <div ng-if="vm.flag" class="grid-block">
+        <div class="small-8 small-offset-1">
+            <div class="videoWrapper">
+                <!--<vimeo id="myplayer" control-boolean="vm.isplaying" vid="60122989" pid="1"></vimeo>-->
+                <iframe id="player1" ng-src="{{vm.url}}" width="960" height="585" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+            </div>
+            <vimeoctrl></vimeoctrl>
+        </div>
+        <div class="small-2 chapters" id="chapters" >
+            <div class="chapter" ng-repeat="(key,chapter) in vm.video.chapters" ng-click="vm.seek(chapter.secs, key)" ng-class="{'active':vm.active == key}">
+                <span class="time"> <i class="fa fa-clock-o"></i> {{chapter.secs|secondsToDateTime | date:'HH:mm:ss'}}</span>  &nbsp;&nbsp;{{chapter.title}}
+            </div>
+
+        </div>
+    </div>
+
+    <div class="grid-block">
+        <div class="small-5 small-offset-1">
+            <div class="video-controller">
+                <div class="grid-block">
+                    <div class="grid-content">
+                        <div class="video-jump ban" ng-show="vm.prevideo==null">
+                            <span ><i class="fa fa-ban"></i></span>
+                        </div>
+                        <div class="video-jump" ui-sref="oneVideo({courseid:vm.courseid,id:vm.prevideo._id})" ng-show="vm.prevideo != null">
+                            <span ><i class="fa fa-chevron-left"></i>{{vm.prevideo.title}}</span>
+                        </div>
+                    </div>
+                    <div class="grid-content">
+                        <div class="video-jump ban"  ng-show="vm.nexvideo==null">
+                            <span><i class="fa fa-ban"></i></span>
+                        </div>
+                        <div class="video-jump" ui-sref="oneVideo({courseid:vm.courseid,id:vm.nexvideo._id})" ng-show="vm.nexvideo != null">
+                            <span >{{vm.nexvideo.title}} <i class="fa fa-chevron-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-controller">
+                    <div zf-tabs="" class="video-tab-control" >
+                        <div zf-tab="" title="Lesson Detail">
+                           {{$parent.vm.video.description}}
+
+                        </div>
+                        <div zf-tab="" title="Course Videos">
+                            <div ng-repeat="video in $parent.vm.cvideos" class="other-videos" ui-sref="oneVideo({courseid:video.course,id:video._id})" ng-class="{'current':video._id == video.currentid}">
+                                <span><i class="fa fa-television"></i></span> {{video.title}}<span class="pull-right"><i class="fa fa-clock-o"></i> {{video.length|secondsToDateTime | date:'HH:mm:ss'}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="small-5" style="padding: 20px;">
+            <div style="border-radius: 8px;border: 1px solid #30ACE1; padding: 20px;min-height: 400px">
+                Course Documents Download, Coming Soon!
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+
+<!--<div class="grid-frame vertical">-->
+
+    <!--<div class="dark shrink title-bar">-->
+        <!--<div class="center title">Productivity</div>-->
+        <!--<span class="left"><a zf-open="projects">Projects</a></span>-->
+        <!--<span class="right"><a zf-open="profile">Profile</a></span>-->
+    <!--</div>-->
+
+    <!--<div class="grid-content shrink collapse">-->
+        <!--<ul class="primary icon-left condense menu-bar">-->
+            <!--<li><a href="#"><img src="http://placehold.it/50x50"><strong>Foundation for Apps</strong></a></li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<div class="grid-block scroll-section" ng-class="['ui-animation']" ui-view>-->
+    <!--</div>-->
+<!--</div>-->
+
+<!--<zf-panel id="projects" position="left">-->
+    <!--<a href="#" zf-close>&times;</a>-->
+    <!--<ul class="menu-bar vertical">-->
+        <!--<li>-->
+            <!--<a href="#">-->
+                <!--<img src="http://placehold.it/50x50">-->
+                <!--<span class="block-list-label">Amazing Project  &#x2730;</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a href="#">-->
+                <!--<img src="http://placehold.it/50x50">-->
+                <!--<span class="block-list-label">Amazing Project  &#x2730;</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a href="#">-->
+                <!--<img src="http://placehold.it/50x50">-->
+                <!--<span class="block-list-label">Amazing Project  &#x2730;</span>-->
+            <!--</a>-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--<a href="#">-->
+                <!--<img src="http://placehold.it/50x50">-->
+                <!--<span class="block-list-label">Amazing Project  &#x2730;</span>-->
+            <!--</a>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</zf-panel>-->
+
+<!--<zf-panel id="profile" position="right">-->
+    <!--<div class="grid-content small-12">-->
+        <!--<a href="#" zf-close>&times;</a>-->
+        <!--<section class="block-list">-->
+            <!--<header>Activity</header>-->
+            <!--<ul>-->
+                <!--<li class="with-chevron">-->
+                    <!--<a href="#">-->
+                        <!--<img src="http://placehold.it/50x50">-->
+                        <!--<span class="block-list-label">Jarvis moved a file</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="with-chevron">-->
+                    <!--<a href="#">-->
+                        <!--<img src="http://placehold.it/50x50">-->
+                        <!--<span class="block-list-label">Jarvis moved a file</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="with-chevron">-->
+                    <!--<a href="#">-->
+                        <!--<img src="http://placehold.it/50x50">-->
+                        <!--<span class="block-list-label">Jarvis moved a file</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="with-chevron">-->
+                    <!--<a href="#">-->
+                        <!--<img src="http://placehold.it/50x50">-->
+                        <!--<span class="block-list-label">Jarvis moved a file</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li class="with-chevron">-->
+                    <!--<a href="#">-->
+                        <!--<img src="http://placehold.it/50x50">-->
+                        <!--<span class="block-list-label">Jarvis moved a file</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</section>-->
+    <!--</div>-->
+<!--</zf-panel>-->
+<!-- <div class="container">
+    <div class="vimeo row">
+        <div class="col-sm-9">
+            <div class="iwrapper">
+                <iframe id='vimeoplayer'  src="https://player.vimeo.com/video/151968723?api=1&player_id=vimeoplayer"  frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-sm-3" >
+            <div id ='seth' >
+                <div class="" id = 'chapter' style="">
+                    <div sec = '0' num = '1' class="seek activate"><span><i class='fa fa-clock-o'>&nbsp0mins&nbsp</i>Introduction and Overview</span>
+                        <input type="hidden" value='0'>
+                    </div>
+                    <div sec = '91'  num = '2' class="seek"><span><i class='fa fa-clock-o'>&nbsp1mins&nbsp</i>What is an OS?</span>
+                        <input type="hidden" value='10'>
+                    </div>
+                    <div sec = '174'  num = '3' class="seek"><span><i class='fa fa-clock-o'>&nbsp2mins&nbsp</i>What OS's are popular?</span>
+                        <input type="hidden" value='15'>
+                    </div>
+                    <div sec = '270'  num = '4' class="seek"><span><i class='fa fa-clock-o'>&nbsp9mins&nbsp</i>Interacting with an OS</span>
+                        <input type="hidden" value='20'>
+                    </div>
+                    <div sec = '411'  num = '5' class="seek"><span><i class='fa fa-clock-o'>&nbsp6mins&nbsp</i>Linux distributions</span>
+                        <input type="hidden" value='25'>
+                    </div>
+                    <div sec = '509'  num = '6' class="seek"><span><i class='fa fa-clock-o'>&nbsp8mins&nbsp</i>Unix shell</span>
+                        <input type="hidden" value='30'>
+                    </div>
+                    <div sec = '536'  num = '7' class="seek"><span><i class='fa fa-clock-o'>&nbsp8mins&nbsp</i>Command-Line</span>
+                        <input type="hidden" value='30'>
+                    </div>
+                    <div sec = '552'  num = '8' class="seek"><span><i class='fa fa-clock-o'>&nbsp9mins&nbsp</i>Exercise1</span>
+                        <input type="hidden" value='30'>
+                    </div>
+                    <div sec = '803'  num = '9' class="seek"><span><i class='fa fa-clock-o'>&nbsp13mins&nbsp</i>The Filesystem</span>
+                        <input type="hidden" value='30'>
+                    </div>
+                    <div sec = '911'  num = '10' class="seek"><span><i class='fa fa-clock-o'>&nbsp15mins&nbsp</i>The working directory</span>
+                        <input type="hidden" value='30'>
+                    </div>
+                    <div sec = '1014'  num = '11' class="seek"><span><i class='fa fa-clock-o'>&nbsp16mins&nbsp</i>Pathnames</span>
+                        <input type="hidden" value='30'>
+                    </div>
+                    <div sec = '1114'  num = '11' class="seek"><span><i class='fa fa-clock-o'>&nbsp16mins&nbsp</i>Pathnames</span>
+                        <input type="hidden" value='30'>
+                    </div>
+                    <div sec = '1214'  num = '11' class="seek"><span><i class='fa fa-clock-o'>&nbsp16mins&nbsp</i>Pathnames</span>
+                        <input type="hidden" value='30'>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="othercontrol row">
+        <div class="control col-sm-6">
+            
+                <?php $this->renderPartial('_sum', array()); ?>
+            
+            
+        </div>
+        <div class=" control col-sm-6">
+                <?php $this->renderPartial('_note', array()); ?>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function(){
+        var height = $('#vimeoplayer').height();
+        $('#seth').height(height);
+        var iframe = $('#vimeoplayer')[0];
+        var player = $f(iframe);
+        var container = document.getElementById('chapter');
+        player.addEvent('ready', function() {
+            player.addEvent('finish', onFinish);
+            player.addEvent('playProgress', onPlayProgress);
+        });
+        $('.seek').bind('click', function() {
+         var seekVal = $(this).attr('sec');
+         player.api('seekTo', seekVal);
+
+        });
+        var test = $('.seek');
+        function onPlayProgress(data){
+            var seconds = data.seconds;
+            test.each(function(i, obj){
+                var left = $(obj).attr('sec');
+                if (i < (test.length-1)){
+                var next = test.eq(i+1);
+                var right = next.attr('sec');
+                } else {
+                var right = data.duration;
+                }
+                if (seconds >= left && seconds < right){
+                    if(! $(obj).hasClass('activate')){
+                        $('.activate').removeClass('activate');
+                        $(obj).addClass('activate');
+                        var num = $(obj).attr('num');
+                        var value = (num-3)*50;
+                        console.log(right);
+                        $('#seth').scrollTop(value);
+                    }
+                    return false;
+                }
+            });
+        };
+        function onFinish(id) {
+            $('#complete').html('finished');
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://f.vimeocdn.com/js/froogaloop2.min.js"></script>
+<style type="text/css">
+
+.seek i{
+    transform:scale(0.9);
+    color:#fff;
+    text-shadow:none !important;
+}
+
+.seek i{
+
+}
+.activate i{
+    display: none;
+}
+.activate span{
+    border:none;
+}
+body{
+    background-color: #f3f2f1;
+}
+.vimeo{
+    margin-top: 90px;
+    margin-bottom: 30px;
+}
+.seek{
+    padding-left: 5px;
+    border-top: 2px solid #fff;
+    border-bottom:2px solid #fff;
+    background: #30ace1;
+    color: #fff;    
+    height: 40px;
+    line-height: 40px;
+}
+.seek:hover i{
+    display: none;
+}
+.seek:hover span{
+    border:none;
+}
+.seek:hover{
+    
+    font-size: 18px;
+    
+    font-weight: 700;
+    transition:0.3s;
+}
+.seek span{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 20px; /* <-- adjust this */
+}
+.activate{
+    color: #30ace1;
+    font-size: 18px;
+    background: #fff;
+    border-left: 5px solid orange;
+    font-weight: 700;
+}
+#chapter{
+
+ perspective:1000px;
+ 
+}
+
+#seth{
+    background: #fff;
+    border:1px solid #ddd;
+    
+    overflow-y: scroll;
+    overflow-x: visible;
+    position: relative;
+
+}
+#complete{
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 0 3px 4px #ccc;
+    margin-bottom: 10px;
+}
+.controlwrapper{
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 0 3px 4px #ccc;
+    min-height: 400px;
+    background: #fff;
+    margin-bottom: 50px;
+}
+.iwrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+}
+.seek{
+    cursor: pointer;
+}
+.othercontrol{
+    margin-bottom: 90px;
+}
+.control{
+
+}
+iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+</style> -->

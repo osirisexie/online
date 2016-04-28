@@ -1,0 +1,21 @@
+<div class="top-container grid-container">
+    <div class="grid-block vertical">
+
+
+    <div ng-repeat="product in vm.products">
+        <a href="/#products/{{product._id}}">{{product}}</a>
+    </div>
+    <form id="addCourse" name="addCourse" role="form" ng-submit="vm.onSubmit()">
+        <label for="title">title</label>
+        <input id="title" type="text" ng-model="vm.formData.title">
+        <label for="description">description</label>
+        <input id="description" type="text" ng-model="vm.formData.description">
+        <label for="courses">Courses</label>
+        <select name="videos" id="courses" multiple ng-model="vm.formData.courses">
+            <option ng-repeat="course in vm.courses" value="{{course._id}}">{{course.title}}</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
+</div>

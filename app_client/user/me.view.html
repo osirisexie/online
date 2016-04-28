@@ -1,0 +1,46 @@
+<div class="grid-block vertical me">
+
+    <div class="report grid-block">
+        <div class="grid-block user-info medium-4 large-5">
+            <div>
+                <div class="user-name">{{vm.user.name}}</div>
+                <div class="random-content"> Today, I feel like <div ui-sref="courses" class="random" ng-repeat="word in vm.words">{{word}}</div></div>
+            </div>
+        </div>
+        <div class=" grid-block small-up-2 small-9  medium-8 large-7 report-content">
+            <div style="margin-bottom: 10px;">
+                <div>My Courses: <span class="number">{{vm.courselist.length}}</span></div>
+                <div class="mycourse-btn" ng-click="vm.setnow()" ng-class="{'acbtn':vm.now}">View</div>
+
+            </div>
+            <div style="margin-bottom: 10px;">
+                <div>Courses Taken: <span class="number">{{vm.chistory.length}}</span></div>
+                <div class="mycourse-btn" ng-click="vm.unsetnow()" ng-class="{'acbtn':!vm.now}">View</div>
+
+            </div>
+            <div style="margin-bottom: 10px;">Watched <i class="fa fa-television"></i>: <span class="number">{{vm.user.vfinished.length}}</span></div>
+            <div style="margin-bottom: 10px;">Study Time <i class="fa fa-clock-o"></i>: <span class="number">{{vm.user.vfinished| totaltime | secondsToDateTime | date:'HH:mm:ss'}}</span></div>
+        </div>
+    </div>
+    <div class="grid-container" style="margin-top: 30px;">
+    </div>
+    <div ng-show="vm.now" class="home">
+        <div class="text-center">
+            <h4>Courses Available Now:</h4>
+        </div>
+        <div class="grid-block small-up-1 medium-up-2 large-up-4">
+            <div ng-repeat="course in vm.chistory | courselist: vm.courselist" course-card chistory="course"></div>
+
+        </div>
+    </div>
+    <div ng-show="!vm.now" class="home">
+
+        <div class="text-center">
+            <h4>Courses History:</h4>
+        </div>
+        <div class="grid-block small-up-1 medium-up-2 large-up-4">
+            <div ng-repeat="course in vm.chistory" course-card chistory="course"></div>
+
+        </div>
+    </div>
+</div>

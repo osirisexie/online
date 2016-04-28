@@ -1,0 +1,23 @@
+
+            <div class="grid-block vertical">
+                <banner> </banner>
+                <div class="home">
+
+                    <div class="text-center">
+                        <h4>Popular</h4>
+                    </div>
+                    <div class="grid-block small-up-1 medium-up-2 large-up-4">
+                       <div ng-repeat="course in vm.courses" course-card course="course"></div>
+
+                    </div>
+                </div>
+                <div class="home">
+                    <div class="text-center">
+                        <h4>Latest</h4>
+                    </div>
+                    <div class="grid-block small-up-1 medium-up-2 large-up-4">
+                        <div ng-repeat="course in vm.coursesDate" course-card course="course"></div>
+
+                    </div>
+                </div>
+            </div>

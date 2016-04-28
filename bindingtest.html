@@ -1,0 +1,22 @@
+
+
+
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+	<title></title>
+</head>
+<body ng-controller='mycontroller'>
+	<input ng-model="myinput"></input>
+	<h1>Hello {{ myinput }}</h1>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script>
+		var Myfucntion = function($scope){
+			$scope.myinput = "World!";
+		};
+		angular
+			.module('myapp',[])
+			.controller('mycontroller', Myfucntion);
+	</script>
+</body>
+</html>
